@@ -1,0 +1,51 @@
+Look to the console ...
+
+<script src='MRT.js'></script>
+<script src='Random.js'></script>
+<script src='MathRSA.js'></script>
+<script src='RSA.js'></script>
+
+<script>
+let today = new Date();
+let start = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+console.log("all start: " + start);
+
+var rsa = new RSA();
+
+rsa.generatePQNFi(310, 310);
+
+var keys = rsa.generatePairKeyERealisticTime(16);
+console.log("611 around(2048b) digits: " + rsa.fi.toString().length);
+
+console.log("Pair key:");
+console.log("n: ("+ keys[0][0] + ")");
+console.log("e: ("+ keys[0][1] +")");
+console.log("");
+console.log("n: ("+ keys[1][0] +")");
+console.log("d: ("+ keys[1][1] +")");
+console.log("");
+
+let msg = 13n;
+let encrypted = rsa.encryptSign(msg);
+let decrypted = rsa.decryptSign(encrypted);
+
+console.log("msg : " + msg);
+console.log("");
+console.log("enc : " + encrypted);
+console.log("");
+console.log("dec : " + decrypted);
+console.log("");
+console.log("Next test");
+
+let msgArr = [13n, 32n, 43n];
+let encryptedArr = rsa.encryptArr(msgArr);
+let decryptedArr = rsa.decryptArr(encryptedArr);
+
+for(i = 0; i < decryptedArr.length; i++){
+    console.log(decryptedArr[i]);
+}
+
+today = new Date();
+end = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+console.log("all end: " + end);
+</script>
